@@ -135,7 +135,7 @@ export default function Footer() {
 
         {/* Links */}
         <div className="space-y-2">
-          <h4 className="font-bold text-slate-700">Explore</h4>
+          <h4 className="font-bold text-slate-00">Explore</h4>
           <ul className="text-sm text-slate-600 space-y-1">
             <li>Recipes</li>
             <li>AI Planner</li>
