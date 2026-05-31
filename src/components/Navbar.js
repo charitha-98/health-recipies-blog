@@ -16,6 +16,7 @@ export default function Navbar() {
   const navItems = [
     { name: 'Recipes', path: '/', icon: <Utensils size={18} /> },
     { name: 'AI Planner', path: '/ai-planner', icon: <Calendar size={18} /> },
+    { name: 'AI Nutrition', path: '/ai-nutrition', icon: <LayoutDashboard size={18} /> },
     { name: 'About', path: '/about', icon: <User size={18} /> },
     
   ];
