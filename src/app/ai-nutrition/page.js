@@ -49,7 +49,7 @@ export default function NutritionAnalyzer() {
     <div className="max-w-xl mx-auto py-10 px-4 w-full">
       
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-black text-slate-900 mb-2">AI Food <span className="text-emerald-600">Scanner</span></h1>
+        <h1 className="text-3xl font-black text-slate-700 mb-2">AI Food <span className="text-emerald-600">Scanner</span></h1>
         <p className="text-slate-600">Upload a photo to get instant nutritional insights.</p>
       </div>
 
