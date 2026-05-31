@@ -13,6 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${geistSans.variable} ${playfair.variable} scroll-smooth`}>
       <body className="bg-white text-slate-900 antialiased min-h-screen flex flex-col">
         <Navbar />
+        <SearchBar />
         <main className="flex-grow">{children}</main>
         <Footer />
       </body>
