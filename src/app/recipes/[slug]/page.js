@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { client } from '@/lib/sanity';
 import Link from 'next/link';
 import RecipeCard from '@/components/RecipeCard'; // 🌟 අලුත් Component එක Import කළා
+import RecipePrint from '@/components/RecipePrint';
 
 async function getRecipe(slug) {
   const query = `*[_type == "recipe" && slug.current == $slug][0]{
@@ -35,6 +36,7 @@ export async function generateMetadata({ params }) {
     },
   };
 }
+
 
 export default async function RecipeDetailPage({ params }) {
   const { slug } = await params;
@@ -121,6 +123,18 @@ export default async function RecipeDetailPage({ params }) {
         instructions={normalizedInstructions} 
       />
 
+      <div className="mt-10 border-t border-slate-100 pt-10">
+        <RecipePrint 
+          recipeData={{
+            title: recipe.title,
+            images: recipe.imageUrl ? [{ url: recipe.imageUrl }] : [],
+            ingredients: recipe.ingredients,
+            instructions: normalizedInstructions, // මෙතනට මම කලින් normalize කරපු instructions එක දෙන්න
+          }} 
+        />
+      </div>
+
     </article>
+    
   );
 }
