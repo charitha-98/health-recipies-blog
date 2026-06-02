@@ -7,21 +7,29 @@ export default function RecipePrint({ recipeData }) {
   const contentRef = useRef(null);
 
   const handleDownloadPDF = async () => {
-    const element = contentRef.current;
-    const canvas = await html2canvas(element, { 
-      scale: 2,
-      backgroundColor: '#ffffff',
-      useCORS: true
-    });
+  const element = contentRef.current;
+  
+  // Mobile වලදී div එකේ content එක හරියටම ගන්න මේ settings පාවිච්චි කරන්න
+  const canvas = await html2canvas(element, { 
+    scale: 2,
+    backgroundColor: '#ffffff',
+    useCORS: true,
+    // මේ පේළි දෙක ඉතා වැදගත්!
+    windowWidth: element.scrollWidth, 
+    windowHeight: element.scrollHeight,
+    logging: false
+  });
 
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-    
-    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-    pdf.save(`${recipeData.title}.pdf`);
-  };
+  const imgData = canvas.toDataURL('image/png');
+  const pdf = new jsPDF('p', 'mm', 'a4');
+  const pdfWidth = pdf.internal.pageSize.getWidth();
+  
+  // image එක PDF පිටුවට ගැලපෙන ලෙස හදන්න
+  const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+  
+  pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+  pdf.save(`${recipeData.title}.pdf`);
+};
 
   return (
     <div className="my-10 p-4 md:p-10 border-2 border-dashed border-emerald-500 rounded-xl w-full max-w-2xl mx-auto">
