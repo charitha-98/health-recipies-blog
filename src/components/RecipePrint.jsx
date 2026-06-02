@@ -35,7 +35,7 @@ export default function RecipePrint({ recipeData }) {
     <div className="my-10 p-4 md:p-10 border-2 border-dashed border-emerald-500 rounded-xl w-full max-w-2xl mx-auto">
       
       {/* මේ Div එකේ තියෙන දේවල් විතරයි PDF එකට වැටෙන්නේ */}
-      <div ref={contentRef} className="p-10 bg-white text-black" style={{ backgroundColor: '#ffffff', color: '#000000' }}>
+      <div ref={contentRef} className="p-6 bg-white text-black" style={{ backgroundColor: '#ffffff', color: '#000000' , minHeight: 'fit-content'}}>
         
         {/* 1. නම */}
         <h1 className="text-3xl font-black mb-6">{recipeData.title}</h1>
