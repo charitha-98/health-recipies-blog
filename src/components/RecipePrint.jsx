@@ -42,7 +42,7 @@ export default function RecipePrint({ recipeData }) {
             fontFamily: 'sans-serif'
         }}
       >
-        <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '20px' }}>
+        {/* <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '20px' }}>
             {recipeData.title}
         </h1>
         
@@ -52,7 +52,7 @@ export default function RecipePrint({ recipeData }) {
           {recipeData.ingredients?.map((item, index) => (
             <li key={index} style={{ fontSize: '18px', marginBottom: '10px' }}>{item}</li>
           ))}
-        </ul>
+        </ul> */}
       </div>
 
       <button 
