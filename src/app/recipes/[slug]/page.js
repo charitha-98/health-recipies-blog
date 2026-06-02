@@ -75,7 +75,7 @@ export default async function RecipeDetailPage({ params }) {
         <span className="text-xs font-bold uppercase tracking-widest text-nutriPrimary bg-nutriPrimary/5 px-3 py-1.5 rounded-full">
           {recipe.tags?.[0] || "Healthy Recipe"}
         </span>
-        <h1 className="font-serif text-3xl md:text-5xl font-black text-slate-900 leading-tight">
+        <h1 className="font-serif text-3xl md:text-5xl font-black text-slate-700 leading-tight">
           {recipe.title}
         </h1>
         <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 text-xs text-slate-400 font-medium">
