@@ -7,29 +7,40 @@ export default function RecipePrint({ recipeData }) {
   const contentRef = useRef(null);
 
   const handleDownloadPDF = async () => {
-  const element = contentRef.current;
-  
-  // Mobile වලදී div එකේ content එක හරියටම ගන්න මේ settings පාවිච්චි කරන්න
-  const canvas = await html2canvas(element, { 
-    scale: 5,
-    backgroundColor: '#ffffff',
-    useCORS: true,
-    // මේ පේළි දෙක ඉතා වැදගත්!
-    windowWidth: element.scrollWidth, 
-    windowHeight: element.scrollHeight,
-    logging: false
-  });
+    const element = contentRef.current;
+    
+    // 1. Canvas එක හදාගන්න (අපි කලින් වගේම)
+    const canvas = await html2canvas(element, { 
+      scale: 2,
+      backgroundColor: '#ffffff',
+      useCORS: true,
+      windowWidth: element.scrollWidth,
+      windowHeight: element.scrollHeight 
+    });
 
-  const imgData = canvas.toDataURL('image/png');
-  const pdf = new jsPDF('p', 'mm', 'a4');
-  const pdfWidth = pdf.internal.pageSize.getWidth();
-  
-  // image එක PDF පිටුවට ගැලපෙන ලෙස හදන්න
-  const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-  
-  pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-  pdf.save(`${recipeData.title}.pdf`);
-};
+    const imgData = canvas.toDataURL('image/png');
+    
+    // 2. jsPDF හදාගන්න (A4 size)
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    
+    // 3. PDF එකේ ඉඩ ප්‍රමාණය ගණනය කරන්න
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    
+    // 4. රූපය PDF පිටුවට ගැලපෙන ලෙස Resize කිරීම (මෙන්න මේ ටික වැදගත්!)
+    const imgWidth = pdfWidth - 20; // දෙපැත්තෙන් 10mm මාජින් තියන්න
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    
+    // රූපය පිටුවට වඩා උස නම්, ඒක පිටුවට ගැලපෙන විදියට scale කරන්න
+    let height = imgHeight;
+    if (height > pdfHeight - 20) {
+      height = pdfHeight - 20;
+    }
+
+    // 5. PDF එකට රූපය එකතු කිරීම
+    pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, height);
+    pdf.save(`${recipeData.title}.pdf`);
+  };
 
   return (
     <div className="my-10 p-4 md:p-10 border-2 border-dashed border-emerald-500 rounded-xl w-full max-w-2xl mx-auto">
