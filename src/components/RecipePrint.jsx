@@ -30,7 +30,7 @@ export default function RecipePrint({ recipeData }) {
   };
 
   return (
-    <div className="w-full p-4">
+    <div className="my-10 p-4 md:p-10 border-2 border-dashed border-emerald-500 rounded-xl w-full max-w-2xl mx-auto">
       {/* මේ Div එකේ තියෙන CSS වෙනස් කළා */}
       <div 
         ref={contentRef} 
@@ -42,7 +42,7 @@ export default function RecipePrint({ recipeData }) {
             fontFamily: 'sans-serif'
         }}
       >
-        {/* <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '20px' }}>
+        <h1 style={{ fontSize: '32px', fontWeight: 'bold', marginBottom: '20px' }}>
             {recipeData.title}
         </h1>
         
@@ -52,7 +52,7 @@ export default function RecipePrint({ recipeData }) {
           {recipeData.ingredients?.map((item, index) => (
             <li key={index} style={{ fontSize: '18px', marginBottom: '10px' }}>{item}</li>
           ))}
-        </ul> */}
+        </ul>
       </div>
 
       <button 
