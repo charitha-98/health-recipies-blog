@@ -11,7 +11,7 @@ export default function RecipePrint({ recipeData }) {
   
   // Mobile වලදී div එකේ content එක හරියටම ගන්න මේ settings පාවිච්චි කරන්න
   const canvas = await html2canvas(element, { 
-    scale: 2,
+    scale: 5,
     backgroundColor: '#ffffff',
     useCORS: true,
     // මේ පේළි දෙක ඉතා වැදගත්!
